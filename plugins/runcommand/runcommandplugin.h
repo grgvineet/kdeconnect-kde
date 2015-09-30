@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Vineet Garg <grg.vineet@gmail.com>
+ * Copyright 2015 Albert Vaca <albertvaka@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,24 +18,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pairinghandler.h"
-#include "devicelink.h"
+#ifndef RUNCOMMANDPLUGIN_H
+#define RUNCOMMANDPLUGIN_H
 
-PairingHandler::PairingHandler(Device* device)
-{
-    m_device = device;
-}
+#include <QObject>
 
-void PairingHandler::setLink(DeviceLink *dl)
-{
-    m_deviceLink =  dl;
-}
+#include <core/kdeconnectplugin.h>
+#include <QFile>
+#include <QFileSystemWatcher>
+#include <QMap>
+#include <QPair>
+#include <QString>
 
-void PairingHandler::linkDestroyed(QObject* o)
+class Q_DECL_EXPORT RunCommandPlugin
+    : public KdeConnectPlugin
 {
-    DeviceLink* dl = static_cast<DeviceLink*>(o);
-    if (dl == m_deviceLink) { // Check if same link is destroyed
-        m_deviceLink = Q_NULLPTR;
-        Q_EMIT linkNull();
-    }
-}
+    Q_OBJECT
+
+public:
+    explicit RunCommandPlugin(QObject *parent, const QVariantList &args);
+    virtual ~RunCommandPlugin();
+
+
+public Q_SLOTS:
+    virtual bool receivePackage(const NetworkPackage& np);
+    virtual void connected();
+
+private Q_SLOTS:
+    void configChanged();
+
+private:
+    void sendConfig();
+
+};
+
+#endif

@@ -61,9 +61,9 @@ public:
      */
 
     QStringList trustedDevices(); //list of ids
-    void removeTrustedDevice(QString id);
+    void removeTrustedDevice(const QString &deviceId);
     void addTrustedDevice(QString id, QString name, QString type);
-    KdeConnectConfig::DeviceInfo getTrustedDevice(QString id);
+    KdeConnectConfig::DeviceInfo getTrustedDevice(const QString &id);
     void setDeviceProperty(QString deviceId, QString name, QString value);
     QString getDeviceProperty(QString deviceId, QString name, QString defaultValue = QString());
 
@@ -71,8 +71,8 @@ public:
      * Paths for config files, there is no guarantee the directories already exist
      */
     QDir baseConfigDir();
-    QDir deviceConfigDir(QString deviceId);
-    QDir pluginConfigDir(QString deviceId, QString pluginName); //Used by KdeConnectPluginConfig
+    QDir deviceConfigDir(const QString &deviceId);
+    QDir pluginConfigDir(const QString &deviceId, const QString &pluginName); //Used by KdeConnectPluginConfig
 
 private:
     KdeConnectConfig();

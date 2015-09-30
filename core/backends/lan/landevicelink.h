@@ -25,7 +25,7 @@
 #include <QString>
 #include <QSslSocket>
 
-#include "../devicelink.h"
+#include "backends/devicelink.h"
 #include "uploadjob.h"
 
 class SocketLineReader;

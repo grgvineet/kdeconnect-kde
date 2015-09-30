@@ -18,6 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "core/device.h"
 #include "../core/backends/lan/lanlinkprovider.h"
 #include "../core/kdeconnectconfig.h"
 

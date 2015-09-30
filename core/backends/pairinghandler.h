@@ -21,11 +21,12 @@
 #ifndef KDECONNECT_PAIRINGHANDLER_H
 #define KDECONNECT_PAIRINGHANDLER_H
 
-#include "device.h"
 #include "networkpackage.h"
-#include "devicelink.h"
 
 #include <QTimer>
+
+class Device;
+class DeviceLink;
 
 /*
  * This class separates the pairing interface for each type of link.

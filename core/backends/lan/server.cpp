@@ -20,13 +20,6 @@
 
 #include "server.h"
 
-#include "kdeconnectconfig.h"
-#include "lanlinkprovider.h"
-
-#include <QSslKey>
-#include <QSslSocket>
-#include <QSslError>
-
 Server::Server(QObject * parent)
     :QTcpServer(parent)
 {

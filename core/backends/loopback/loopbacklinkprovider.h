@@ -21,7 +21,7 @@
 #ifndef LOOPBACKLINKPROVIDER_H
 #define LOOPBACKLINKPROVIDER_H
 
-#include "../linkprovider.h"
+#include "backends/linkprovider.h"
 #include "loopbackdevicelink.h"
 #include <QPointer>
 

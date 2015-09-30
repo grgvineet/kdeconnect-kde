@@ -28,6 +28,7 @@
 
 #include <QAbstractSocket>
 #include <QSslSocket>
+#include <QSslKey>
 #include <QtTest>
 #include <QUdpSocket>
 

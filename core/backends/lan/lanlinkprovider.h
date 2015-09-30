@@ -27,7 +27,7 @@
 #include <QUdpSocket>
 #include <QtNetwork/qsslsocket.h>
 
-#include "../linkprovider.h"
+#include "backends/linkprovider.h"
 #include "netaddress.h"
 #include "server.h"
 #include "landevicelink.h"

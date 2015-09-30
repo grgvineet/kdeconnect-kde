@@ -26,7 +26,6 @@
 #include <QNetworkSession>
 
 #include "core/networkpackage.h"
-#include "pairinghandler.h"
 
 class DeviceLink;
 

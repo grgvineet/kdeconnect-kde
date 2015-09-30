@@ -23,7 +23,7 @@
 
 #include <QTcpServer>
 #include <QSslError>
-#include <QtNetwork/qsslsocket.h>
+#include <QSslSocket>
 
 // This class overrides QTcpServer to bind QSslSocket to native socket descriptor instead of QTcpSocket
 class Server

@@ -21,7 +21,7 @@
 #ifndef LOOPBACKDEVICELINK_H
 #define LOOPBACKDEVICELINK_H
 
-#include "../devicelink.h"
+#include "backends/devicelink.h"
 
 class LoopbackLinkProvider;
 

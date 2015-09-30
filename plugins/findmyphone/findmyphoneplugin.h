@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Vineet Garg <grg.vineet@gmail.com>
+ * Copyright 2014 Apoorv Parle <apparle@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,24 +18,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pairinghandler.h"
-#include "devicelink.h"
+#ifndef PINGPLUGIN_H
+#define PINGPLUGIN_H
 
-PairingHandler::PairingHandler(Device* device)
-{
-    m_device = device;
-}
+#include <QObject>
 
-void PairingHandler::setLink(DeviceLink *dl)
-{
-    m_deviceLink =  dl;
-}
+#include <core/kdeconnectplugin.h>
 
-void PairingHandler::linkDestroyed(QObject* o)
+#define PACKAGE_TYPE_FINDMYPHONE QStringLiteral("kdeconnect.findmyphone")
+
+class FindMyPhonePlugin
+    : public KdeConnectPlugin
 {
-    DeviceLink* dl = static_cast<DeviceLink*>(o);
-    if (dl == m_deviceLink) { // Check if same link is destroyed
-        m_deviceLink = Q_NULLPTR;
-        Q_EMIT linkNull();
-    }
-}
+    Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.kde.kdeconnect.device.findmyphone")
+
+public:
+    explicit FindMyPhonePlugin(QObject *parent, const QVariantList &args);
+    virtual ~FindMyPhonePlugin();
+    
+    Q_SCRIPTABLE void ring();
+
+public Q_SLOTS:
+    virtual void connected();
+    virtual bool receivePackage(const NetworkPackage& np);
+
+private:
+    QString dbusPath() const;
+};
+
+#endif

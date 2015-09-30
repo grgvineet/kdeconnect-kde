@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Vineet Garg <grg.vineet@gmail.com>
+ * Copyright 2015 David Edmundson <davidedmundson@kde.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,24 +18,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pairinghandler.h"
-#include "devicelink.h"
+#ifndef SHARE_CONFIG_H
+#define SHARE_CONFIG_H
 
-PairingHandler::PairingHandler(Device* device)
-{
-    m_device = device;
-}
+#include "kcmplugin/kdeconnectpluginkcm.h"
 
-void PairingHandler::setLink(DeviceLink *dl)
-{
-    m_deviceLink =  dl;
-}
+class QStandardItemModel;
 
-void PairingHandler::linkDestroyed(QObject* o)
+class RunCommandConfig
+    : public KdeConnectPluginKcm
 {
-    DeviceLink* dl = static_cast<DeviceLink*>(o);
-    if (dl == m_deviceLink) { // Check if same link is destroyed
-        m_deviceLink = Q_NULLPTR;
-        Q_EMIT linkNull();
-    }
-}
+    Q_OBJECT
+public:
+    RunCommandConfig(QWidget *parent, const QVariantList&);
+    virtual ~RunCommandConfig();
+
+public Q_SLOTS:
+    virtual void save() Q_DECL_OVERRIDE;
+    virtual void load();
+    virtual void defaults();
+
+private Q_SLOTS:
+    void onDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
+private:
+    void insertEmptyRow();
+
+    QStandardItemModel *m_entriesModel;
+
+};
+
+#endif

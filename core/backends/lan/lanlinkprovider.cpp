@@ -35,7 +35,7 @@
 #include <QNetworkSession>
 #include <QNetworkConfigurationManager>
 
-#include "../../daemon.h"
+#include "core/daemon.h"
 #include "landevicelink.h"
 #include "lanpairinghandler.h"
 #include <kdeconnectconfig.h>
@@ -187,7 +187,7 @@ void LanLinkProvider::connected()
     NetworkPackage* receivedPackage = receivedIdentityPackages[socket].np;
     const QString& deviceId = receivedPackage->get<QString>("deviceId");
     //qCDebug(KDECONNECT_CORE) << "Connected" << socket->isWritable();
-    LanDeviceLink* deviceLink = new LanDeviceLink(deviceId, this, socket, DeviceLink::Remotely);
+    //LanDeviceLink* deviceLink = new LanDeviceLink(deviceId, this, socket, DeviceLink::Remotely);
 
     // If network is on ssl, do not believe when they are connected, believe when handshake is completed
     NetworkPackage np2("");
